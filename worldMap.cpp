@@ -70,7 +70,7 @@ void drawMap(){
     }
   }
   for (int x = 0; x < 9; x++){
-    sprite.drawSelfMasked((x*16)-surfaceX, 0, OceanBkg, OceanArray[x]);
+    sprite.drawSelfMasked((x*16)-surfaceX, -6, OceanBkg, OceanArray[x]);
   }
   surfaceX++;
   if(surfaceX == 16) {

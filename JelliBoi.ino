@@ -18,7 +18,7 @@ void setup() {
   arduboy.begin();
   arduboy.setFrameRate(15);
   arduboy.clear();
-  GameStage = Medusa;
+  GameStage = Intro;
   playerDirection = left;
   
    
@@ -31,7 +31,7 @@ void loop() {
   }
   arduboy.pollButtons();
   arduboy.clear();
-  
+
 
   drawMap();
   getDirection();

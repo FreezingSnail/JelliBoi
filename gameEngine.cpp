@@ -92,7 +92,7 @@ void StrobilateStage(){
     for(int x = 0; x < 3; x++){
      lilfish[x].updateFish();
      lilfish[x].drawFish();
-     if( lilfish[x].fishCollision(plyrStrob.x, plyrStrob.y, 8) && plyrStrob.growing == false){
+     if( lilfish[x].fishCollision(plyrStrob.x, plyrStrob.y, 8, 8) && plyrStrob.growing == false){
       enteringStage = true;
       GameStage = GameOver;
      }
@@ -112,11 +112,37 @@ void MedusaStage(){
   
   plyrMedusa.drawMedusa();
   plyrMedusa.updateMedusa();
+
+   for(int x = 0; x < 5; x++){
+     pellet[x].updatePellet();
+     pellet[x].drawPellet();
+     
+     if(pellet[x].pelletCollision(plyrMedusa.tentX, plyrMedusa.tentY, 8, 2 )){
+     pellet[x].resetPellet();
+     score++;
+     }
+     
+     
+   }
+    for(int x = 0; x < 3; x++){
+     lilfish[x].updateFish();
+     lilfish[x].drawFish();
+     if( lilfish[x].fishCollision(plyrMedusa.xLoc, plyrMedusa.yLoc+4, 8, 4)){
+      enteringStage = true;
+      GameStage = GameOver;
+     }
+      if( (lilfish[x].fishCollision(plyrMedusa.tentX, plyrMedusa.tentY, 8, 8)) && (lilfish[x].fishCollision(plyrMedusa.xLoc, plyrMedusa.yLoc+4, 8, 4)) == false){
+      lilfish[x].resetFish();
+      score +=3;
+     }
+}
 }
 
 
 void gameOver(){
   arduboy.print("GAMEOVER");
+  arduboy.setCursor(60,30);
+  arduboy.print(score);
 
 }
 
@@ -127,6 +153,16 @@ void intro(){
     arduboy.initRandomSeed();
     GameStage = Larva;
   }
+     for(int x = 0; x < 5; x++){
+      pellet[x].updatePellet();
+      pellet[x].drawPellet();
+     }
+       
+    for(int x = 0; x < 3; x++){
+     lilfish[x].updateFish();
+     lilfish[x].drawFish();
+     
+     }
   
 }
 

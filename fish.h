@@ -10,6 +10,6 @@ class fish: public pellets {
  void drawFish();
  void updateFish();
  void resetFish();
- bool fishCollision(int plyrX, int plyrY, int spriteDim);
+ bool fishCollision(int plyrX, int plyrY, int spriteDim, int caseType);
 };
 

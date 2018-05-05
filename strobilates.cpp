@@ -131,7 +131,7 @@ void strob::updateStrob(){
       growing = false;
     }
     
- if( arduboy.justPressed(B_BUTTON) && counter > 14*growthModifier){
+ if( arduboy.justPressed(B_BUTTON) && growing == false){
     swimming = true;
     
     switch (direct){
@@ -168,10 +168,19 @@ void strob::updateStrob(){
   else if(y > 46){
     y = 46; 
   }
-  else if( y < 13){
-    y = 13;
+  else if( y < 13-6){
+    y = 13-6;
   }
 
+ if(frameCounter % 15 == 0 ){
+      growCounter++;
+ }
+if (growCounter > 60){
+    frameCounter = 0;
+    enteringStage = true;
+    GameStage = Medusa;
+   
+  }
 }
  
 

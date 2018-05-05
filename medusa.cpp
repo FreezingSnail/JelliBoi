@@ -45,8 +45,8 @@ medusa::medusa(int startX, int startY){
 
 void medusa::drawMedusa(){
   if (swimmingJelli ==true){
-    sprite.drawSelfMasked(xLoc, yLoc, jelli, swimJelliPattern[swimJelliframe]+ direct);
-    sprite.drawSelfMasked(xLoc, yLoc, jelli, swimJelliPattern[swimJelliframe]+ 4);
+    sprite.drawSelfMasked(xLoc, yLoc, jelli, swimJelliPattern[swimJelliframe]);
+    sprite.drawSelfMasked(tentX, tentY, jelli, swimJelliPattern[swimJelliframe]+ 4);
     swimJelliframe++;
   }
   else {
@@ -76,36 +76,41 @@ void medusa::updateMedusa(){
  if (swimmingJelli == false){ setDirection(); }
  
  
- if(frameCounter % 4 == 0){
-      xLoc--;
-      yLoc += 2;
-      tentX--;
-      tentY += 2;
+ if(frameCounter % 9 == 0){
+      yLoc++;   
+      tentY =yLoc+8;
  }
     
- if( arduboy.justPressed(B_BUTTON)){
+ if( arduboy.justPressed(B_BUTTON) && swimmingJelli == false){
     swimmingJelli = true;
     
     switch (direct){
     case 0:
-    ySpeed =-4;
+    ySpeed =-2;
     xSpeed-=3;
     break;
     case 1:
-    ySpeed = -4;
+    ySpeed = -2;
     xSpeed = 3;
     break;
 
     }
   }
-
-  xLoc+= xSpeed;
-  yLoc+= ySpeed;
+  if(swimmingJelli){
   tentX += xSpeed;
+  xLoc+= xSpeed;
+  }
+  else{
+    if(frameCounter % 4 == 0){
+      tentX += xSpeed;
+      xLoc+= xSpeed;
+   }
+  }
+  yLoc+= ySpeed;
   tentY += ySpeed;
   
-  if (xSpeed > 0){ xSpeed--;}
-  else if (xSpeed < 0){ xSpeed++;}
+  if (xSpeed > 1){ xSpeed--;}
+  else if (xSpeed < -1){ xSpeed++;}
   else if (ySpeed < 0){ ySpeed++;}
   
 
@@ -117,13 +122,13 @@ void medusa::updateMedusa(){
     xLoc = 0; 
     tentX = 0;
   }
-  else if(yLoc > 30){
-    yLoc = 30;
+  else if(yLoc > 41){
+    yLoc = 41;
     tentY=yLoc + 8;
   }
-  else if( yLoc < 13){
-    yLoc = 13;
-    tentY= 13+ 8;
+  else if( yLoc < 4){
+    yLoc = 4;
+    tentY= yLoc+ 8;
   }
 
 }

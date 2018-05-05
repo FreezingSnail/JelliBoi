@@ -33,7 +33,7 @@ void fish::updateFish(){
 
       
        xLoc += moveDirection;
-       if( moveDirection > 0 && xLoc >130 ||  moveDirection < 0 && xLoc < -2){
+       if( moveDirection > 0 && xLoc >156 ||  moveDirection < 0 && xLoc < -20){
        resetFish();
        }
     
@@ -43,7 +43,7 @@ void fish::resetFish(){
 
            fishType = rand() % 3;
            pelDirect = rand() % 2;
-           yLoc =rand() %40 + 17;
+           yLoc =rand() %36 + 13;
 
         if(pelDirect==0){
              xLoc =-1;
@@ -58,18 +58,19 @@ void fish::resetFish(){
       
 }
 
-bool fish::fishCollision(int plyrX, int plyrY, int spriteDim){
+bool fish::fishCollision(int plyrX, int plyrY, int spriteDimX, int spriteDimY){
     
-
+      
       Rect playerRect = {plyrX, 
                               plyrY,
-                              spriteDim,
-                             spriteDim };
+                              spriteDimX,
+                             spriteDimY };
                              
-      Rect pelletRect =  {xLoc, yLoc, 8, 8 };
+      Rect fishRect =  {xLoc, yLoc, 8, 8 };
+  
                              
       
-        if(arduboy.collide(playerRect, pelletRect)){
+        if(arduboy.collide(playerRect, fishRect)){
 
          return true;
           

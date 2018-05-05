@@ -61,30 +61,30 @@ bool pellets::pelletCollision(int plyrX, int plyrY, int spriteDim, int collision
     
  
 
-      Rect playerRect;
-      if(playerDirection == up || playerDirection == down){
-          Rect playerRect = { plyrX, 
+     Rect playerRect = {2,2,2,2};
+      if((playerDirection == up || playerDirection == down) && collisionCase == 0){
+           playerRect = { plyrX, 
                               plyrY +2,
                               spriteDim,
                               spriteDim-4 };
 
       }
-      else if(playerDirection == left || playerDirection == right){
-          Rect playerRect = { plyrX+2, 
+      else if((playerDirection == left || playerDirection == right) && collisionCase == 0){
+           playerRect = { plyrX+2, 
                               plyrY,
                               spriteDim - 4,
                               spriteDim };
 
       }
       else{
-        Rect playerRect = { plyrX, 
+         playerRect = { plyrX, 
                               plyrY,
                               spriteDim,
                               spriteDim };
       }
                              
       Rect pelletRect =  {xLoc, yLoc, 1, 1 };
-                             
+                          
       if(collisionCase == 0){ // same
         if(arduboy.collide(playerRect, pelletRect) && pelDirection == playerDirection ) {
 
@@ -96,14 +96,15 @@ bool pellets::pelletCollision(int plyrX, int plyrY, int spriteDim, int collision
         if(arduboy.collide(playerRect, pelletRect) && pelDirection != playerDirection ) {
 
           return true;
+        }
           
+        }else if(collisionCase == 2){ //aything but the same
+        if(arduboy.collide(playerRect, pelletRect)) {
+
+          return true;
         }
       }
       
-    
-    
-  
-
   return false;
 }
 
