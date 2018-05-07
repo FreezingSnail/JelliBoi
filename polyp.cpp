@@ -79,9 +79,11 @@ void polyp::drawPolyp(){
 void polyp::updatePolyp(){
   setDirection();
   
-    growCounter++;
+    if(frameCounter % 15 == 0 ){
+      growCounter++;
+ }
 
-    if (score > 3){
+    if (growCounter > 30){
     frameCounter = 0;
     enteringStage = true;
     GameStage = Strobilate;

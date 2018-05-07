@@ -2,7 +2,7 @@
 #define gameEngine_h
 
 #include "worldMap.h"
-#include "GLobals.h"
+#include "Globals.h"
 #include "larva.h";
 #include "polyp.h"
 #include "pellets.h"
@@ -18,6 +18,6 @@ void gameOver();
 void  worldDemo();
 void getDirection();
 void intro();
-
+void beeper();
 bool collision();
 #endif

@@ -18,7 +18,7 @@ void setup() {
   arduboy.begin();
   arduboy.setFrameRate(15);
   arduboy.clear();
-  GameStage = Intro;
+  GameStage = Strobilate;
   playerDirection = left;
   
    
@@ -31,6 +31,8 @@ void loop() {
   }
   arduboy.pollButtons();
   arduboy.clear();
+  beep.timer();
+  arduboy.audio.on();
 
 
   drawMap();

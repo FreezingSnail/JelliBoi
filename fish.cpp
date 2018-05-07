@@ -55,7 +55,7 @@ void fish::updateFish(){
 
       
        xLoc += moveDirection;
-       if( moveDirection > 0 && xLoc >156 ||  moveDirection < 0 && xLoc < -20){
+       if( moveDirection > 0 && xLoc >176 ||  moveDirection < 0 && xLoc < -50){
        resetFish();
        }
     
@@ -88,7 +88,7 @@ bool fish::fishCollision(int plyrX, int plyrY, int spriteDimX, int spriteDimY){
                               spriteDimX,
                              spriteDimY };
                              
-      Rect fishRect =  {xLoc, yLoc, 8, 8 };
+      Rect fishRect =  {xLoc+1, yLoc+1, 6, 6 };
   
                              
       
@@ -105,7 +105,7 @@ bool fish::fishCollision(int plyrX, int plyrY, int spriteDimX, int spriteDimY){
 
 bigFish::bigFish(){
   byte fishType = rand() % 2;
-  resetFish();
+  resetBigFish();
   
 }
 
@@ -129,9 +129,9 @@ bool bigFish::fishBigCollision(int plyrX, int plyrY, int spriteDimX, int spriteD
                              
       Rect fishRect;
       if (pelDirect == 0){
-        fishRect =  {xLoc, yLoc-8, 16, 8 };
+        fishRect =  {xLoc-8, yLoc+1, 16, 6 };
       }else{
-        fishRect =  {xLoc, yLoc, 16, 8 };
+        fishRect =  {xLoc, yLoc+1, 16, 6 };
       }
   
                              
@@ -166,7 +166,7 @@ void bigFish::resetBigFish(){
 }
  void bigFish::updateBigFish(){
       xLoc += moveDirection;
-       if( moveDirection > 0 && xLoc >156 ||  moveDirection < 0 && xLoc < -20){
+       if( moveDirection > 0 && xLoc >200 ||  moveDirection < 0 && xLoc < -100){
        resetBigFish();
        }
   }

@@ -6,7 +6,7 @@
 class pellets{
 
   public:
-  int xLoc;
+  int xLoc =- -30;
   int yLoc =rand() %48 + 10;
   int moveDirection;
   bool inuse;

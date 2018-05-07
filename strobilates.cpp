@@ -165,8 +165,8 @@ void strob::updateStrob(){
   else if( x < 0 ){
     x = 0; 
   }
-  else if(y > 46){
-    y = 46; 
+  else if(y > 50){
+    y = 50; 
   }
   else if( y < 13-6){
     y = 13-6;
@@ -175,7 +175,7 @@ void strob::updateStrob(){
  if(frameCounter % 15 == 0 ){
       growCounter++;
  }
-if (growCounter > 60){
+if (growCounter > 30){
     frameCounter = 0;
     enteringStage = true;
     GameStage = Medusa;

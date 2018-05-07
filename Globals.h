@@ -7,6 +7,7 @@
 
 extern Arduboy2 arduboy;
 extern Sprites sprite;
+extern BeepPin1 beep;
 
 enum GameState {
   Intro,
@@ -30,5 +31,6 @@ extern Directions playerDirection;
 extern uint8_t frameCounter;
 extern bool enteringStage;
 extern uint16_t score;
+extern uint8_t CycleCount;
 
 #endif

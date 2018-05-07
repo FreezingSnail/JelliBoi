@@ -36,6 +36,24 @@ const uint8_t PROGMEM jelli[] =
 0x00, 0x00, 0x0f, 0xfe, 0xfe, 0x0f, 0x00, 0x00, 
 };
 
+const uint8_t PROGMEM strob2Jelli[] =
+{
+// width, height,
+8, 8,
+// TILE 00
+0x20, 0x38, 0x0c, 0x3c, 0x0c, 0x3c, 0x18, 0x20, 
+// TILE 01
+0x18, 0x3c, 0x06, 0x1e, 0x06, 0x1e, 0x2c, 0x18, 
+// TILE 02
+0x1c, 0x3e, 0x2e, 0x1e, 0x0e, 0x3e, 0x3e, 0x1c, 
+// TILE 03
+0x2e, 0x1f, 0x1f, 0x2f, 0x0f, 0x3f, 0x1f, 0x2e, 
+// TILE 04
+0x6e, 0x1f, 0x1d, 0x7f, 0x1f, 0x7f, 0x1f, 0x6e, 
+// TILE 05
+0xee, 0x1b, 0x1d, 0xef, 0x1f, 0xef, 0x1f, 0xee, 
+};
+
 medusa::medusa(int startX, int startY){
   xLoc = startX;
   yLoc= startY;
@@ -44,7 +62,11 @@ medusa::medusa(int startX, int startY){
 }
 
 void medusa::drawMedusa(){
-  if (swimmingJelli ==true){
+
+  if (counter <= 12){
+  sprite.drawSelfMasked(xLoc, yLoc, strob2Jelli, counter/2);
+  }
+  else if (swimmingJelli ==true && counter > 18){
     sprite.drawSelfMasked(xLoc, yLoc, jelli, swimJelliPattern[swimJelliframe]);
     sprite.drawSelfMasked(tentX, tentY, jelli, swimJelliPattern[swimJelliframe]+ 4);
     swimJelliframe++;
@@ -63,15 +85,20 @@ void medusa::drawMedusa(){
 void medusa::setDirection(){
   if (playerDirection == left){
     direct = 0;
+    xSpeed = -1;
   
   }
   else  if (playerDirection == right){
     direct = 1;
+    xSpeed = 1;
 
   }
 }
 
 void medusa::updateMedusa(){
+
+  if (counter < 20){
+    counter++;}
   
  if (swimmingJelli == false){ setDirection(); }
  
@@ -95,6 +122,9 @@ void medusa::updateMedusa(){
     break;
 
     }
+  }
+  if ( arduboy.pressed(A_BUTTON) && swimmingJelli == false){
+    ySpeed = 2;
   }
   if(swimmingJelli){
   tentX += xSpeed;
@@ -129,6 +159,17 @@ void medusa::updateMedusa(){
   else if( yLoc < 4){
     yLoc = 4;
     tentY= yLoc+ 8;
+  }
+
+  if(frameCounter % 15 == 0 ){
+      growCounter++;
+  }
+  if (growCounter > 30){
+    frameCounter = 0;
+    enteringStage = true;
+    CycleCount++;
+    GameStage = Larva;
+   
   }
 
 }

@@ -11,6 +11,7 @@ class larva{
     int y;
     int horizontalSpeed;
     int growCounter;
+    uint8_t counter =25;
 
     larva(int x, int y);
     void setDirection();
