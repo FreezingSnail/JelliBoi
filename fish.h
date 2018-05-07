@@ -7,9 +7,19 @@ class fish: public pellets {
   byte fishType; // 
 
  fish();
- void drawFish();
- void updateFish();
+ virtual void drawFish();
+ virtual void updateFish();
  void resetFish();
- bool fishCollision(int plyrX, int plyrY, int spriteDim, int caseType);
+ virtual bool fishCollision(int plyrX, int plyrY, int spriteDim, int caseType);
+};
+
+
+class bigFish: public fish{
+  public:
+  bigFish();
+  virtual void drawBigFish();
+  virtual void updateBigFish();
+  virtual bool fishBigCollision(int plyrX, int plyrY, int spriteDim, int caseType);
+  void resetBigFish();
 };
 

@@ -18,6 +18,28 @@ const uint8_t PROGMEM lilFish[] =
 0x20, 0x20, 0x30, 0x68, 0x7c, 0x3a, 0x10, 0x38,  
 };
 
+const uint8_t PROGMEM bigFishArray[] =
+{
+// width, height,
+8, 8,
+// TILE 00
+0x7c, 0x48, 0x78, 0x68, 0x30, 0x20, 0x20, 0x20, 
+// TILE 01
+0x7c, 0x24, 0x5e, 0x76, 0x6c, 0x2c, 0x08, 0x00, 
+// TILE 02
+0x44, 0x38, 0x10, 0x30, 0x38, 0x78, 0x6a, 0x4e, 
+// TILE 03
+0x33, 0x1e, 0x0c, 0x0c, 0x1e, 0x56, 0x63, 0x6b, 
+// TILE 04
+0x20, 0x20, 0x20, 0x30, 0x68, 0x78, 0x48, 0x7c, 
+// TILE 05
+0x00, 0x08, 0x2c, 0x6c, 0x76, 0x5e, 0x24, 0x7c, 
+// TILE 06
+0x4e, 0x6a, 0x78, 0x38, 0x30, 0x10, 0x38, 0x44, 
+// TILE 07
+0x6b, 0x63, 0x56, 0x1e, 0x0c, 0x0c, 0x1e, 0x33, 
+};
+
 fish::fish(): pellets(){
   byte fishType = rand() % 3;
   resetFish();
@@ -79,3 +101,73 @@ bool fish::fishCollision(int plyrX, int plyrY, int spriteDimX, int spriteDimY){
       
   return false;
 }
+
+
+bigFish::bigFish(){
+  byte fishType = rand() % 2;
+  resetFish();
+  
+}
+
+void bigFish::drawBigFish(){
+  sprite.drawSelfMasked( xLoc,  yLoc, bigFishArray, (fishType+(pelDirect*4)));
+  if(pelDirect == 0){
+  sprite.drawSelfMasked( xLoc-8,  yLoc, bigFishArray, fishType+2+(pelDirect*4));
+  }else{
+    sprite.drawSelfMasked( xLoc+8,  yLoc, bigFishArray, fishType+2+(pelDirect*4));
+  }
+  
+}
+
+bool bigFish::fishBigCollision(int plyrX, int plyrY, int spriteDimX, int spriteDimY){
+    
+      
+      Rect playerRect = {plyrX, 
+                              plyrY,
+                              spriteDimX,
+                             spriteDimY };
+                             
+      Rect fishRect;
+      if (pelDirect == 0){
+        fishRect =  {xLoc, yLoc-8, 16, 8 };
+      }else{
+        fishRect =  {xLoc, yLoc, 16, 8 };
+      }
+  
+                             
+      
+        if(arduboy.collide(playerRect, fishRect)){
+
+         return true;
+          
+        }
+  
+      
+  return false;
+}
+
+void bigFish::resetBigFish(){
+
+           fishType = rand() % 2;
+           pelDirect = rand() % 2;
+           yLoc =rand() %36 + 13;
+
+        if(pelDirect==0){
+             xLoc =-1;
+             pelDirection = right;
+            moveDirection = rand() %2 + 1;
+        }
+        else if(pelDirect==1){
+             xLoc =129;
+             pelDirection = left;
+            moveDirection = rand() %2 + -2;
+        }
+      
+}
+ void bigFish::updateBigFish(){
+      xLoc += moveDirection;
+       if( moveDirection > 0 && xLoc >156 ||  moveDirection < 0 && xLoc < -20){
+       resetBigFish();
+       }
+  }
+

@@ -6,6 +6,7 @@
 
 pellets pellet[5];
 fish lilfish[3];
+bigFish bigFishes[2];
   
 void getDirection(){
  
@@ -124,7 +125,7 @@ void MedusaStage(){
      
      
    }
-    for(int x = 0; x < 3; x++){
+    for(int x = 0; x < 2; x++){
      lilfish[x].updateFish();
      lilfish[x].drawFish();
      if( lilfish[x].fishCollision(plyrMedusa.xLoc, plyrMedusa.yLoc+4, 8, 4)){
@@ -135,7 +136,15 @@ void MedusaStage(){
       lilfish[x].resetFish();
       score +=3;
      }
-}
+  }
+   for(int x = 0; x < 2; x++){
+     bigFishes[x].updateBigFish();
+     bigFishes[x].drawBigFish();
+     if( bigFishes[x].fishCollision(plyrMedusa.xLoc, plyrMedusa.yLoc+4, 8, 12)){
+      enteringStage = true;
+      GameStage = GameOver;
+     }
+  }
 }
 
 
@@ -162,6 +171,11 @@ void intro(){
      lilfish[x].updateFish();
      lilfish[x].drawFish();
      
+     }
+
+     for(int x = 0; x < 2; x++){
+     bigFishes[x].updateBigFish();
+     bigFishes[x].drawBigFish();
      }
   
 }
