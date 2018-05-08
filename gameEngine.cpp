@@ -14,6 +14,10 @@ pellets pellet[5];
 fish lilfish[3];
 bigFish bigFishes[2];
 
+pellets pelletI[5];
+fish lilfishI[3];
+bigFish bigFishesI[2];
+
 
   
 void getDirection(){
@@ -214,7 +218,10 @@ void MedusaStage(){
 void gameOver(){
   arduboy.print("GAMEOVER");
   arduboy.setCursor(60,30);
+  arduboy.print(F("You Scored:"));
+  arduboy.setCursor(60,40);
   arduboy.print(score);
+  
   CycleCount = 1;
   if(arduboy.justPressed(A_BUTTON)){
     enteringStage = true;
@@ -226,26 +233,32 @@ void gameOver(){
 void intro(){
   arduboy.drawBitmap(16,10, titleScreen, 96, 32, WHITE);
   arduboy.setCursor(34,45);
-  arduboy.print("B TO Start");
+  arduboy.print("B To Start");
+  arduboy.setCursor(34,55);
+  arduboy.print("A for help");
   if(arduboy.justPressed(B_BUTTON)){
     arduboy.initRandomSeed();
     GameStage = Larva;
   }
      for(int x = 0; x < 5; x++){
-      pellet[x].updatePellet();
-      pellet[x].drawPellet();
+      pelletI[x].updatePellet();
+      pelletI[x].drawPellet();
      }
        
     for(int x = 0; x < 3; x++){
-     lilfish[x].updateFish();
-     lilfish[x].drawFish();
+     lilfishI[x].updateFish();
+     lilfishI[x].drawFish();
      
      }
 
      for(int x = 0; x < 2; x++){
-     bigFishes[x].updateBigFish();
-     bigFishes[x].drawBigFish();
+     bigFishesI[x].updateBigFish();
+     bigFishesI[x].drawBigFish();
      }
+     if (arduboy.justPressed(A_BUTTON)){
+       GameStage = help;
+       menuCounter = 0;
+    }
   
 }
 void beeper(){

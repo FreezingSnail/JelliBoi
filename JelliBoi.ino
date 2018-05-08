@@ -10,6 +10,7 @@
 #include "Globals.h"
 #include "gameEngine.h"
 #include "worldMap.h"
+#include "help.h"
 
 
 
@@ -18,7 +19,7 @@ void setup() {
   arduboy.begin();
   arduboy.setFrameRate(15);
   arduboy.clear();
-  GameStage = Strobilate;
+  GameStage = Intro;
   playerDirection = left;
   
    
@@ -61,6 +62,9 @@ void loop() {
     break;
     case GameState::Medusa:
     MedusaStage();
+    break;
+    case GameState::help:
+    helpmenu();
     break;
   
   }

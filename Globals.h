@@ -16,6 +16,7 @@ enum GameState {
   Strobilate,
   Medusa,
   GameOver,
+  help,
   
 };
 enum Directions {
@@ -32,5 +33,6 @@ extern uint8_t frameCounter;
 extern bool enteringStage;
 extern uint16_t score;
 extern uint8_t CycleCount;
+extern int menuCounter;
 
 #endif
