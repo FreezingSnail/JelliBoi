@@ -217,7 +217,7 @@ void MedusaStage(){
 
 void gameOver(){
   arduboy.print("GAMEOVER");
-  arduboy.setCursor(60,30);
+  arduboy.setCursor(30,30);
   arduboy.print(F("You Scored:"));
   arduboy.setCursor(60,40);
   arduboy.print(score);
@@ -262,6 +262,6 @@ void intro(){
   
 }
 void beeper(){
-  beep.tone(beep.freq(1000), 100);
+  beep.tone(beep.freq(440), 5);
 }
 

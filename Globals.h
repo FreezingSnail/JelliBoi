@@ -4,6 +4,7 @@
 
 #include <Arduboy2.h>
 #include <Sprites.h>
+#include <Arduboy2Beep.h>
 
 extern Arduboy2 arduboy;
 extern Sprites sprite;
