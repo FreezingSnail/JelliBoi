@@ -1,6 +1,5 @@
 #ifndef worldMap_h
 #define worldMap_h
-#include "bitmaps.h"
 #include "Globals.h"
 
 // map is a single slice of height repeated horizontilly

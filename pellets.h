@@ -6,11 +6,10 @@
 class pellets{
 
   public:
-  int xLoc =- -30;
-  int yLoc =rand() %48 + 10;
-  int moveDirection;
-  bool inuse;
-  int pelDirect;
+  int16_t xLoc =- -30;
+  int16_t yLoc =rand() %48 + 10;
+  uint8_t moveDirection;
+  byte pelDirect;
   Directions pelDirection;
 
   explicit pellets();

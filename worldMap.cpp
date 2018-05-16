@@ -1,6 +1,6 @@
 #include "worldMap.h"
 
- int surfaceX = 0;
+ uint8_t surfaceX = 0;
  uint8_t OceanArray[9] = {
   1,
   2,

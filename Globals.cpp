@@ -9,4 +9,4 @@
  bool enteringStage = true;
  uint16_t score = 0;
  uint8_t CycleCount = 1;
- int menuCounter = 0;
+ int8_t menuCounter = 0;

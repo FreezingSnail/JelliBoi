@@ -17,7 +17,7 @@ pellets::pellets(){
   
    yLoc;
   
-  bool inuse = true;
+
 
   
 }

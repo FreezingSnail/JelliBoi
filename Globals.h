@@ -34,6 +34,6 @@ extern uint8_t frameCounter;
 extern bool enteringStage;
 extern uint16_t score;
 extern uint8_t CycleCount;
-extern int menuCounter;
+extern int8_t menuCounter;
 
 #endif
