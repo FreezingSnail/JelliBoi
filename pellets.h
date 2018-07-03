@@ -8,7 +8,7 @@ class pellets{
   public:
   int16_t xLoc =- -30;
   int16_t yLoc =rand() %48 + 10;
-  uint8_t moveDirection;
+  int8_t moveDirection;
   byte pelDirect;
   Directions pelDirection;
 

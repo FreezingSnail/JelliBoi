@@ -6,21 +6,28 @@
  * 
  */
 #include <stdint.h>
+#include <EEPROM.h>
  
 #include "Globals.h"
 #include "gameEngine.h"
 #include "worldMap.h"
 #include "help.h"
+#include "EEPROM.h"
+
+
 
 
 
 
 void setup() {
   arduboy.begin();
+  beep.begin();
   arduboy.setFrameRate(15);
   arduboy.clear();
   GameStage = Intro;
   playerDirection = left;
+  initEEPROM();
+  EEPROM.get(EEPROM_SCORE, Hscore);
   
    
 }
@@ -46,33 +53,38 @@ void loop() {
   
   switch (GameStage) {
     case GameState::Larva:
-    larvaStage();
-    break;
+      larvaStage();
+     break;
     case GameState::Polyp:
-    PolypStage();
-    break;
+      PolypStage();
+      break;
     case GameState::Strobilate:
-    StrobilateStage();
-    break;
+      StrobilateStage();
+      break;
     case GameState::GameOver:
-    gameOver();
-    break;
+      gameOver();
+      break;
     case GameState::Intro:
-    intro();
-    break;
+      intro();
+     break;
     case GameState::Medusa:
-    MedusaStage();
-    break;
+      MedusaStage();
+      break;
     case GameState::help:
-    helpmenu();
-    break;
-  
+      helpmenu();
+      break;
+      
+    case GameState::HighScore:
+//      getName();
+      break;
+
   }
+  
+  
 
   
   arduboy.display();
 }
-
 
 
 

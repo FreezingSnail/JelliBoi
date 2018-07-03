@@ -10,3 +10,4 @@
  uint16_t score = 0;
  uint8_t CycleCount = 1;
  int8_t menuCounter = 0;
+ int16_t Hscore;
