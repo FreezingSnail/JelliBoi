@@ -246,7 +246,7 @@ void gameOver(){
     if (score > Hscore) {
       Hscore = score;
       EEPROM.put(EEPROM_SCORE, Hscore);
-    }\score = 0;
+    }score = 0;
     GameStage = Intro;
   }
  
