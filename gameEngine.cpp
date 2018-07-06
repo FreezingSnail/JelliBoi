@@ -17,8 +17,9 @@ fish lilfish[3];
 bigFish bigFishes[2];
 
 pellets pelletI[5];
-fish lilfishI[3];
-bigFish bigFishesI[2];
+  fish lilfishI[3];
+  bigFish bigFishesI[2];
+
 
 
   
@@ -240,13 +241,14 @@ void gameOver(){
   }
   
   CycleCount = 1;
-  if(arduboy.justPressed(B_BUTTON)){
+  if(arduboy.justPressed(A_BUTTON)){
     enteringStage = true;
     
     if (score > Hscore) {
       Hscore = score;
       EEPROM.put(EEPROM_SCORE, Hscore);
-    }score = 0;
+    }
+    score = 0;
     GameStage = Intro;
   }
  
@@ -259,24 +261,33 @@ void intro(){
   arduboy.print("B To Start");
   arduboy.setCursor(34,55);
   arduboy.print("A for help");
+  
+  
   if(arduboy.justPressed(B_BUTTON)){
     arduboy.initRandomSeed();
     GameStage = Larva;
+    
+
+    
+
   }
      for(int x = 0; x < 5; x++){
       pelletI[x].updatePellet();
       pelletI[x].drawPellet();
+      pellet[x].resetPellet();
      }
        
     for(int x = 0; x < 3; x++){
      lilfishI[x].updateFish();
      lilfishI[x].drawFish();
+    lilfish[x].resetFish();
      
      }
 
      for(int x = 0; x < 2; x++){
      bigFishesI[x].updateBigFish();
      bigFishesI[x].drawBigFish();
+    bigFishes[x].resetBigFish();
      }
      if (arduboy.justPressed(A_BUTTON)){
        GameStage = help;

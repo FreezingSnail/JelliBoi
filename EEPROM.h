@@ -1,7 +1,7 @@
 #pragma once
 #include "Globals.h"
 
-
+//Courtesy of Filmote from Steve the Dino
 
 /* ----------------------------------------------------------------------------
  *   Is the EEPROM initialised? 
