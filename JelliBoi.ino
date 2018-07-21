@@ -7,16 +7,17 @@
  */
 #include <stdint.h>
 #include <EEPROM.h>
+#include <ATMlib.h>
  
 #include "Globals.h"
 #include "gameEngine.h"
 #include "worldMap.h"
 #include "help.h"
 #include "EEPROM.h"
+#include "song.h"
 
 
-
-
+ATMsynth ATM;
 
 
 void setup() {
@@ -28,6 +29,10 @@ void setup() {
   playerDirection = left;
   initEEPROM();
   EEPROM.get(EEPROM_SCORE, Hscore);
+  arduboy.audio.on();
+  ATM.play(music);
+  
+  
   
    
 }
@@ -40,7 +45,6 @@ void loop() {
   arduboy.pollButtons();
   arduboy.clear();
   beep.timer();
-  arduboy.audio.on();
 
 
   drawMap();

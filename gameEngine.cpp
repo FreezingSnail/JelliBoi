@@ -7,18 +7,16 @@ const uint8_t PROGMEM titleScreen[] =
 };
 
 
-  larva plyrLarva(62, 16);
-  polyp plyrPolyp = polyp(0, 0, 0);
-  strob plyrStrob = strob(10,30);
-  medusa plyrMedusa = medusa(60,16);
+larva plyrLarva(62, 16); 
+polyp plyrPolyp = polyp(0, 0, 0);
+strob plyrStrob = strob(10,30);
+medusa plyrMedusa = medusa(60,16);
 
 pellets pellet[5];
 fish lilfish[3];
 bigFish bigFishes[2];
 
-pellets pelletI[5];
-  fish lilfishI[3];
-  bigFish bigFishesI[2];
+
 
 
 
@@ -261,35 +259,35 @@ void intro(){
   arduboy.print("B To Start");
   arduboy.setCursor(34,55);
   arduboy.print("A for help");
-  
+
+  static pellets pelletI[5];
+  static fish lilfishI[3];
+  static bigFish bigFishesI[2];
   
   if(arduboy.justPressed(B_BUTTON)){
     arduboy.initRandomSeed();
     GameStage = Larva;
-    
-
-    
-
   }
-     for(int x = 0; x < 5; x++){
+  
+  for(int x = 0; x < 5; x++){
       pelletI[x].updatePellet();
       pelletI[x].drawPellet();
       pellet[x].resetPellet();
      }
        
-    for(int x = 0; x < 3; x++){
+  for(int x = 0; x < 3; x++){
      lilfishI[x].updateFish();
      lilfishI[x].drawFish();
     lilfish[x].resetFish();
      
      }
 
-     for(int x = 0; x < 2; x++){
+  for(int x = 0; x < 2; x++){
      bigFishesI[x].updateBigFish();
      bigFishesI[x].drawBigFish();
-    bigFishes[x].resetBigFish();
+     bigFishes[x].resetBigFish();
      }
-     if (arduboy.justPressed(A_BUTTON)){
+   if (arduboy.justPressed(A_BUTTON)){
        GameStage = help;
        menuCounter = 0;
     }
